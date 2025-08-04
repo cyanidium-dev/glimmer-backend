@@ -10,7 +10,25 @@ export default defineConfig({
   projectId: 'us9jz0mn',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Контент')
+          .items([
+            // S.listItem()
+            //   .title('Фотозвіти')
+            //   .child(S.documentList().title('Фотозвіти').filter('_type == "instagram"')),
+            S.listItem()
+              .title('Пости instagram')
+              .child(
+                S.editor().id('instagram').schemaType('instagram').documentId('instaSingleton'),
+              ),
+          ]),
+    }),
+
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,
