@@ -16,9 +16,6 @@ export default defineConfig({
         S.list()
           .title('Контент')
           .items([
-            // S.listItem()
-            //   .title('Фотозвіти')
-            //   .child(S.documentList().title('Фотозвіти').filter('_type == "instagram"')),
             S.listItem()
               .title('Пости instagram')
               .child(
