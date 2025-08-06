@@ -17,6 +17,16 @@ export default defineConfig({
           .title('Контент')
           .items([
             S.listItem()
+              .title('Hero Баннери')
+              .child(S.documentList().title('Hero Баннери').filter('_type == "heroBanner"')),
+            S.listItem()
+              .title('Баннери на головній сторінці')
+              .child(
+                S.documentList()
+                  .title('Баннери на головній сторінці')
+                  .filter('_type == "homepageBanner"'),
+              ),
+            S.listItem()
               .title('Пости instagram')
               .child(
                 S.editor().id('instagram').schemaType('instagram').documentId('instaSingleton'),
