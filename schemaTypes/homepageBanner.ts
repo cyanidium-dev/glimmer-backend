@@ -67,10 +67,11 @@ export default defineType({
     select: {
       title: 'link',
       media: 'imageSmall',
+      order: 'order',
     },
-    prepare({title, media}) {
+    prepare({title, media, order}) {
       return {
-        title: title || 'Без посилання',
+        title: title || `Баннер ${order}`,
         media,
       }
     },
