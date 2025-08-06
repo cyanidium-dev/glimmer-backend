@@ -8,14 +8,8 @@ export default defineType({
     defineField({
       name: 'category',
       title: 'Категорія',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Художня література', value: 'fiction'},
-          {title: 'Канцелярія', value: 'stationery'},
-        ],
-        layout: 'radio',
-      },
+      type: 'reference',
+      to: [{type: 'category'}],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -23,7 +17,6 @@ export default defineType({
       title: 'Жанр',
       type: 'reference',
       to: [{type: 'genre'}],
-      hidden: ({parent}) => parent?.category !== 'fiction',
     }),
     defineField({
       name: 'title',
@@ -145,7 +138,10 @@ export default defineType({
       title: 'Папір',
       type: 'string',
       options: {
-        list: [{title: 'Офсетний', value: 'offset'}],
+        list: [
+          {title: 'Офсетний', value: 'Офсетний'},
+          {title: 'Глянцевий', value: 'Глянцевий'},
+        ],
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
@@ -156,8 +152,10 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Українська', value: 'ua'},
-          {title: 'Англійська', value: 'en'},
+          {title: 'Українська', value: 'Українська'},
+          {title: 'Англійська', value: 'Англійська'},
+          {title: 'Німецька', value: 'Німецька'},
+          {title: 'Іспанська', value: 'Іспанська'},
         ],
         layout: 'radio',
       },

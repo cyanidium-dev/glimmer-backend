@@ -31,15 +31,19 @@ export default defineConfig({
               .child(
                 S.editor().id('instagram').schemaType('instagram').documentId('instaSingleton'),
               ),
+            S.divider(),
             S.listItem()
-              .title('Список видавництв')
+              .title('Видавництва')
               .child(S.documentList().title('Видавництва').filter('_type == "publisher"')),
             S.listItem()
-              .title('Список жанрів')
+              .title('Жанри')
               .child(S.documentList().title('Жанри').filter('_type == "genre"')),
             S.listItem()
-              .title('Список продуктів')
-              .child(S.documentList().title('Продукти').filter('_type == "product"')),
+              .title('Товари')
+              .child(S.documentList().title('Товари').filter('_type == "product"')),
+            S.listItem()
+              .title('Категорії')
+              .child(S.documentList().title('Категорії').filter('_type == "category"')),
           ]),
     }),
 

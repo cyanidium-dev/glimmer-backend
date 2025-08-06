@@ -5,6 +5,7 @@ import genre from './genre'
 import product from './product'
 import heroBanner from './heroBanner'
 import homepageBanner from './homepageBanner'
+import category from './category'
 
 export const schemaTypes = [
   instagram,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   product,
   heroBanner,
   homepageBanner,
+  category,
 ]
