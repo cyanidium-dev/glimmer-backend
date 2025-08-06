@@ -21,6 +21,15 @@ export default defineConfig({
               .child(
                 S.editor().id('instagram').schemaType('instagram').documentId('instaSingleton'),
               ),
+            S.listItem()
+              .title('Список видавництв')
+              .child(S.documentList().title('Видавництва').filter('_type == "publisher"')),
+            S.listItem()
+              .title('Список жанрів')
+              .child(S.documentList().title('Жанри').filter('_type == "genre"')),
+            S.listItem()
+              .title('Список продуктів')
+              .child(S.documentList().title('Продукти').filter('_type == "product"')),
           ]),
     }),
 
