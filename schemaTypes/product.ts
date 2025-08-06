@@ -18,7 +18,6 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: 'genre',
       title: 'Жанр',
@@ -26,7 +25,6 @@ export default defineType({
       to: [{type: 'genre'}],
       hidden: ({parent}) => parent?.category !== 'fiction',
     }),
-
     defineField({
       name: 'title',
       title: 'Назва книги',
@@ -88,6 +86,23 @@ export default defineType({
       },
       initialValue: 'inStock',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'preOrderShippingDate',
+      title: 'Дата відправки (для передзамовлення)',
+      type: 'date',
+      options: {
+        dateFormat: 'YYYY-MM-DD',
+      },
+      hidden: ({parent}: {parent: any}) => parent?.status !== 'preOrder',
+      validation: (Rule) =>
+        Rule.custom((date, context) => {
+          const p = context.parent as any
+          if (p?.status === 'preOrder' && !date) {
+            return 'Вкажіть дату відправки для передзамовлення'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'sku',
@@ -166,7 +181,6 @@ export default defineType({
       type: 'boolean',
       initialValue: false,
     }),
-
     defineField({
       name: 'isNew',
       title: 'Новинка',

@@ -21,5 +21,24 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'order',
+      title: 'Порядок відображення',
+      type: 'number',
+      description: 'Визначає черговість відображення жанрів у списках',
+      validation: (Rule) => Rule.required().integer().min(1),
+    }),
+  ],
+  orderings: [
+    {
+      title: 'За порядком',
+      name: 'orderAsc',
+      by: [{field: 'order', direction: 'asc'}],
+    },
+    {
+      title: 'За назвою',
+      name: 'nameAsc',
+      by: [{field: 'name', direction: 'asc'}],
+    },
   ],
 })
