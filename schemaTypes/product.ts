@@ -1,4 +1,5 @@
 import {defineType, defineField} from 'sanity'
+import FeatureWithValueInput from '../components/FeatureValueInput'
 
 export default defineType({
   name: 'product',
@@ -114,73 +115,41 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'publisher',
-      title: 'Видавництво',
-      type: 'reference',
-      to: [{type: 'publisher'}],
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'coverType',
-      title: 'Обкладинка',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'М’яка', value: 'soft'},
-          {title: 'Тверда', value: 'hard'},
-        ],
-        layout: 'radio',
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'paperType',
-      title: 'Папір',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Офсетний', value: 'Офсетний'},
-          {title: 'Глянцевий', value: 'Глянцевий'},
-        ],
-        layout: 'radio',
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'language',
-      title: 'Мова',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Українська', value: 'Українська'},
-          {title: 'Англійська', value: 'Англійська'},
-          {title: 'Німецька', value: 'Німецька'},
-          {title: 'Іспанська', value: 'Іспанська'},
-        ],
-        layout: 'radio',
-      },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'year',
-      title: 'Рік видання',
-      type: 'number',
-      validation: (Rule) => Rule.min(1000).max(new Date().getFullYear() + 1),
-    }),
-    defineField({
-      name: 'pages',
-      title: 'Кількість сторінок',
-      type: 'number',
-      validation: (Rule) => Rule.min(1),
-    }),
-    defineField({
-      name: 'dimensions',
-      title: 'Розміри (см)',
-      type: 'object',
-      fields: [
-        {name: 'height', title: 'Висота', type: 'number'},
-        {name: 'width', title: 'Ширина', type: 'number'},
-        {name: 'length', title: 'Довжина', type: 'number'},
+      name: 'features',
+      title: 'Характеристики',
+      type: 'array',
+      of: [
+        defineField({
+          name: 'featureWithValue',
+          title: 'Характеристика з значенням',
+          type: 'object',
+          components: {
+            input: FeatureWithValueInput,
+          },
+          fields: [
+            defineField({
+              name: 'feature',
+              title: 'Характеристика',
+              type: 'reference',
+              to: [{type: 'feature'}],
+              description: 'Оберіть характеристику зі списку',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'value',
+              title: 'Значення',
+              type: 'string',
+              description: 'Введіть значення або оберіть зі списку (залежно від характеристики)',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'feature.name',
+              subtitle: 'value',
+            },
+          },
+        }),
       ],
     }),
     defineField({

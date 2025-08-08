@@ -44,6 +44,9 @@ export default defineConfig({
             S.listItem()
               .title('Категорії')
               .child(S.documentList().title('Категорії').filter('_type == "category"')),
+            S.listItem()
+              .title('Характеристики товарів')
+              .child(S.documentList().title('Характеристики').filter('_type == "feature"')),
           ]),
     }),
 
