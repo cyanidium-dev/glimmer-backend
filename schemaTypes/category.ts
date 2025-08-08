@@ -21,5 +21,17 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'genres',
+      title: 'Жанри',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'genre'}],
+        },
+      ],
+      description: 'Список жанрів (необов’язкове поле)',
+    }),
   ],
 })
