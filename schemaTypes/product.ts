@@ -56,8 +56,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Опис',
-      type: 'array',
-      of: [{type: 'block'}],
+      type: 'string',
     }),
     defineField({
       name: 'gallery',
