@@ -18,12 +18,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'photo',
-      title: 'Фото користувача',
-      type: 'image',
-      options: {hotspot: true},
-    }),
-    defineField({
       name: 'rating',
       title: 'Рейтинг',
       type: 'number',

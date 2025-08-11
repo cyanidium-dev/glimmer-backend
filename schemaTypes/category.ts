@@ -22,6 +22,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Порядок відображення',
+      type: 'number',
+      description: 'Менші числа відображаються раніше',
+      validation: (Rule) => Rule.required().min(0).integer(),
+    }),
+    defineField({
       name: 'genres',
       title: 'Жанри',
       type: 'array',

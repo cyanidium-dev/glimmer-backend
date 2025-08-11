@@ -33,14 +33,14 @@ export default defineConfig({
               ),
             S.divider(),
             S.listItem()
+              .title('Товари')
+              .child(S.documentList().title('Товари').filter('_type == "product"')),
+            S.listItem()
               .title('Видавництва')
               .child(S.documentList().title('Видавництва').filter('_type == "publisher"')),
             S.listItem()
               .title('Жанри')
               .child(S.documentList().title('Жанри').filter('_type == "genre"')),
-            S.listItem()
-              .title('Товари')
-              .child(S.documentList().title('Товари').filter('_type == "product"')),
             S.listItem()
               .title('Категорії')
               .child(S.documentList().title('Категорії').filter('_type == "category"')),
