@@ -7,6 +7,7 @@ import heroBanner from './heroBanner'
 import homepageBanner from './homepageBanner'
 import category from './category'
 import feature from './feature'
+import promocode from './promocode'
 
 export const schemaTypes = [
   instagram,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   homepageBanner,
   category,
   feature,
+  promocode,
 ]

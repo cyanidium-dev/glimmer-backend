@@ -47,6 +47,9 @@ export default defineConfig({
             S.listItem()
               .title('Характеристики товарів')
               .child(S.documentList().title('Характеристики').filter('_type == "feature"')),
+            S.listItem()
+              .title('Промокоди')
+              .child(S.documentList().title('Промокоди').filter('_type == "promocode"')),
           ]),
     }),
 
