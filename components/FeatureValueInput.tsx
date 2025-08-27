@@ -2,22 +2,24 @@ import React, {useEffect, useState} from 'react'
 import {ObjectInputProps, PatchEvent, set, unset, FormField} from 'sanity'
 import {useClient} from 'sanity'
 
+// Використовуємо CSS variables від Sanity
 const inputSelectStyles = {
   width: '100%',
   padding: '8px 12px',
   fontSize: '1rem',
   lineHeight: '1.5',
   borderRadius: '4px',
-  border: '1px solid #ccc',
-  backgroundColor: 'white',
+  border: '1px solid var(--card-border-color)',
+  backgroundColor: 'var(--card-bg-color)', // ✅ фон залежить від теми
+  color: 'var(--card-fg-color)', // ✅ текст залежить від теми
   boxSizing: 'border-box' as const,
   outline: 'none',
   transition: 'border-color 0.2s ease',
 }
 
 const inputSelectFocusStyles = {
-  borderColor: '#2684FF', // Sanity синій колір фокусу
-  boxShadow: '0 0 0 3px rgba(38, 132, 255, 0.3)',
+  borderColor: 'var(--card-focus-ring-color)',
+  boxShadow: '0 0 0 3px var(--card-focus-ring-shadow)',
 }
 
 export default function FeatureWithValueInput(props: ObjectInputProps) {
@@ -29,7 +31,6 @@ export default function FeatureWithValueInput(props: ObjectInputProps) {
   )
   const [featuresList, setFeaturesList] = useState<{_id: string; name: string}[]>([])
 
-  // Завантажуємо список всіх характеристик для вибору
   useEffect(() => {
     client
       .fetch(`*[_type == "feature"]{_id, name}`)
@@ -37,7 +38,6 @@ export default function FeatureWithValueInput(props: ObjectInputProps) {
       .catch(() => setFeaturesList([]))
   }, [client])
 
-  // Завантажуємо дані вибраної характеристики
   useEffect(() => {
     if (value.feature?._ref) {
       client
@@ -54,7 +54,6 @@ export default function FeatureWithValueInput(props: ObjectInputProps) {
   const [featureSelectFocused, setFeatureSelectFocused] = useState(false)
   const [valueInputFocused, setValueInputFocused] = useState(false)
 
-  // Зміна вибору характеристики (reference)
   const onFeatureChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = e.target.value
     if (!selectedId) {
@@ -68,7 +67,6 @@ export default function FeatureWithValueInput(props: ObjectInputProps) {
     }
   }
 
-  // Зміна значення value
   const onValueChange = (val: string) => {
     if (val === '') {
       onChange(PatchEvent.from(unset(['value'])))
