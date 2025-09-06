@@ -63,6 +63,7 @@ export default defineType({
       title: 'Галерея зображень',
       type: 'array',
       of: [{type: 'image', options: {hotspot: true}}],
+      validation: (Rule) => Rule.min(1).required(),
     }),
     defineField({
       name: 'bookScreens',
