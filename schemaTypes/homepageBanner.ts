@@ -7,7 +7,7 @@ export default defineType({
   fields: [
     defineField({
       name: 'imageSmall',
-      title: 'Зображення (320x268)',
+      title: 'Зображення (640x536)',
       type: 'image',
       options: {
         hotspot: true,
@@ -16,7 +16,7 @@ export default defineType({
     }),
     defineField({
       name: 'imageLarge',
-      title: 'Зображення (580x320)',
+      title: 'Зображення (1160x640)',
       type: 'image',
       options: {
         hotspot: true,
@@ -40,7 +40,7 @@ export default defineType({
     }),
     defineField({
       name: 'imageCatalog',
-      title: 'Зображення для каталогу (240x619)',
+      title: 'Зображення для каталогу (480x1238)',
       type: 'image',
       options: {
         hotspot: true,
